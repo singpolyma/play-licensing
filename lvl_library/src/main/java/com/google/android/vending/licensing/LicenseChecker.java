@@ -142,7 +142,7 @@ public class LicenseChecker implements ServiceConnection {
         // Market.
         if (mPolicy.allowAccess()) {
             Log.i(TAG, "Using cached license response");
-            callback.allow(Policy.LICENSED);
+            callback.allow(Policy.LICENSED, null, null, null);
         } else {
             LicenseValidator validator = new LicenseValidator(mPolicy, new NullDeviceLimiter(),
                     callback, generateNonce(), mPackageName, mVersionCode);
@@ -337,7 +337,7 @@ public class LicenseChecker implements ServiceConnection {
         mPolicy.processServerResponse(Policy.RETRY, null);
 
         if (mPolicy.allowAccess()) {
-            validator.getCallback().allow(Policy.RETRY);
+            validator.getCallback().allow(Policy.RETRY, null, null, null);
         } else {
             validator.getCallback().dontAllow(Policy.RETRY);
         }
